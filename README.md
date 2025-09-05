@@ -179,17 +179,17 @@ contains several columns that are derived via Visual Basic processing
 scripts, as well as geographic statistics (length and area). These
 columns are not well documented, but can be inferred from the data.
 
-| Variable Name | Description |
-|----|----|
-| `ISCONUS` | Whether the county is part of the Continental United States |
-| `ISTOTAL` | Whether the county is an outlying territory of the US |
-| `StateFIPS` | A two-digit FIPS state code |
-| `WKID` | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
-| `CountyFIPS` | A five-digit FIPS state and county code |
-| `CountyName` | The county name |
-| `StateAbbr` | The state abbreviation |
-| `Shape_Length` | The boundary length of the county, in meters |
-| `Shape_Area` | The area of the county, in square meters |
+| Variable Name  | Description                                                                      |
+|----------------|----------------------------------------------------------------------------------|
+| `ISCONUS`      | Whether the county is part of the Continental United States                      |
+| `ISTOTAL`      | Whether the county is an outlying territory of the US                            |
+| `StateFIPS`    | A two-digit FIPS state code                                                      |
+| `WKID`         | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
+| `CountyFIPS`   | A five-digit FIPS state and county code                                          |
+| `CountyName`   | The county name                                                                  |
+| `StateAbbr`    | The state abbreviation                                                           |
+| `Shape_Length` | The boundary length of the county, in meters                                     |
+| `Shape_Area`   | The area of the county, in square meters                                         |
 
 ------------------------------------------------------------------------
 
@@ -206,7 +206,9 @@ library(rmapshaper) # For innerlines function
 
 ## Load the fsa-lfp-counties parquet file
 counties <- 
-  sf::read_sf("https://sustainable-fsa.github.io/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
+  # You can read straight from online
+  # sf::read_sf("https://sustainable-fsa.github.io/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
+  sf::read_sf("fsa-lfp-counties.parquet") %>%
   # transform to WGS 84
   sf::st_transform("EPSG:4326") %>%
   # drop outlying islands for mapping
