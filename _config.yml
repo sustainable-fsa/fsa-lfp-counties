@@ -1,5 +1,5 @@
-title: Albers.gdb.zip Geodatabase Archive
-description: An archival copy and simplified version of the USDA Farm Service Agency dd17 county boundaries dataset.
+title: LFP County Geodatabase Archive
+description: The county boundary dataset used to determine Livestock Forage Program Eligibility from the USDA Farm Service Agency, 2008–2024.
 author: R. Kyle Bocinsky
 url: "https://sustainable-fsa.github.io/fsa-lfp-counties/"  # Your GitHub Pages URL
 baseurl: "/fsa-lfp-counties"

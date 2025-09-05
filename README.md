@@ -1,272 +1,403 @@
 
 [![GitHub
-Release](https://img.shields.io/github/v/release/sustainable-fsa/ndmc-counties-albers?label=GitHub%20Release&color=%239c27b0)](https://github.com/sustainable-fsa/ndmc-counties-albers)
-[![DOI](https://zenodo.org/badge/967595011.svg)](https://zenodo.org/badge/latestdoi/967595011)
+Release](https://img.shields.io/github/v/release/sustainable-fsa/fsa-lfp-counties?label=GitHub%20Release&color=%239c27b0)](https://github.com/sustainable-fsa/fsa-lfp-counties)
+<!-- [![DOI](https://zenodo.org/badge/814751699.svg)](https://zenodo.org/badge/latestdoi/814751699) -->
 
-This repository contains an archival copy of the **Albers.gdb.zip**
-dataset, originally distributed by the National Drought Mitigation
-Center (NDMC) at the University of Nebraska, Lincoln. The NDMC stewards
-the US Drought Monitor, a weekly assessment of drought conditions in the
-United States and outlying territories.
+# FSA LFP Counties Archive
 
-## Download Script
+This repository is an archive of the county boundary dataset used to
+determine USDA [Livestock Forage Disaster Program
+(LFP)](https://www.fsa.usda.gov/resources/programs/livestock-forage-disaster-program-lfp)
+eligibility.
 
-## 📦 Dataset Overview
+Each week, eligibility for the LFP is determined for each county in the
+United States. Federal law and FSA guidance describes a process by which
+[county-level
+eligibility](https://sustainable-fsa.github.io/fsa-lfp-eligibility/) is
+determined by the intersection of county boundaries, the [United States
+Drought Monitor weekly drought
+assessment](https://sustainable-fsa.github.io/usdm/), and the [normal
+grazing
+period](https://sustainable-fsa.github.io/fsa-normal-grazing-period/)
+for each type of grazing land in each county.
 
-- **Title:** FSA_Counties_dd17
-- **Source:** USDA Farm Service Agency (FSA)
-- **Format:** ESRI File Geodatabase (.gdb)
-- **Original Reference:** [USDA FSA GIS Metadata Standards (1-GIS,
-  Amendment
-  2)](https://www.fsa.usda.gov/Internet/FSA_File/1-gis_r00_a02.pdf)
-- **Distribution Type:** Public archival for research and historical
-  purposes
-- **Date of Archive:** 2025-04-16
+[Official county boundaries
+change](https://www.census.gov/programs-surveys/geography/technical-documentation/county-changes.html),
+both substantially as counties and county equivalents are created and
+removed as well as in small ways as legal boundaries between counties
+are refined. For instance, the US Census has recorded 472 county
+boundary corrections or changes from 2008 through 2024. Thus, agencies
+that make regulatory actions which implicate county boundaries (such as
+LFP eligibility determination) *must* maintain records of which
+boundaries were used for such determinations. LFP eligibility
+determinations stipulate that if “any area of the county” falls within
+certain drought classes during a type of crop’s normal grazing period
+eligibility is triggered. County boundary definitions are essential to
+the administration of the LFP.
 
-## 📂 Contents
+> For more information on determining eligibility for the LFP, refer to
+> [FSA Guidance document 1-LFP Amendment 6, Paragraph
+> 23A](https://www.fsa.usda.gov/Internet/FSA_File/1lfp-a6.pdf).
 
-The zipped geodatabase includes polygon features representing U.S.
-counties, attributed with identifiers used by the FSA for administrative
-and mapping purposes. It was prepared according to the USDA’s GIS Data
-Standards.
+The data in this repository were acquired via FOIA request
+**2025-FSA-08431-F** by R. Kyle Bocinsky (Montana Climate Office) and
+fulfilled on August 4, 2025. The FOIA response, including the original
+Esri file geodatabase, is archived in the [`foia`](./foia) directory.
 
-- [`FSA_Counties_dd17.gdb.zip`](https://sustainable-fsa.github.io/fsa-counties-dd17/FSA_Counties_dd17.gdb.zip)
-  – Original USDA File Geodatabase
-- [`fsa-counties-dd17.topojson`](https://sustainable-fsa.github.io/fsa-counties-dd17/fsa-counties-dd17.topojson)
-  – Simplified TopoJSON version with pre-inset Alaska/Hawaii/Puerto Rico
-  (see below)
-- [`fsa-counties-dd17.R`](https://sustainable-fsa.github.io/fsa-counties-dd17/fsa-counties-dd17.R)
-  – R script that produces the Simplified TopoJSON versions
+## FOIA Final Response
 
-## 🧾 Field Descriptions
+During the process of refining the FOIA request, the FSA LFP Program
+Owner revealed that the geospatial county eligibility determination is
+not performed by USDA staff, but instead is performed by the National
+Drought Mitigation Center under contract to the USDA Office of the Chief
+Economist. The “Program Owner” for an FSA program is a senior official
+or department within the agency responsible for a specific farm or loan
+program. On August 11, 2025, seeking clarification about the request,
+the Program Owner said:
 
-| Field Name | Description |
+> FSA does not use a county boundary to determine LFP eligibility. FSA
+> and the USDM use a tabular file of counties, states, and grazing
+> periods established for specific pasture types in conjunction with
+> *drought data received from the USDM by physical state and county*, no
+> boundary files are used. \[Emphasis added\]
+
+Accordingly, Bocinsky requested that the Program Owner contact the USDM
+and request the geospatial county boundary data used for the county
+drought determinations, including how those data have changed through
+time and any computer scripts or protocols used when making that
+determination.
+
+In the FOIA Final Response, received on September 4, 2025, the Program
+Owner provided a geospatial counties dataset from the National Drought
+Mitigation Center, who produces the USDM. The FOIA response also
+provided the following explanation:
+
+> In response to your request, we compiled and are releasing in full,
+> the National Drought Mitigation Center (NDMC)s geodatabase that
+> contains the current county boundaries. According to the program
+> owner, the boundaries are from the ESRI dataset from 2008 and are
+> considered the industry standard for all geopolitical boundaries and
+> reference layers. The NDMC obtained these layers prior to the 2008
+> Farm Bill first that included relief programs associated with the USDM
+> as county level statistics and maps were available when the transition
+> to GIS map development took place. The NDMC uses this data to have a
+> consistent value for the various counties that have not changed since
+> they were first incorporated in 2008. The NDMC has had to update some
+> counties during this time due to changes made in redrawing and/or
+> renaming counties and with new FIPS creations. The last such change
+> being in 2021 that included an Alaska boundary change. This was a
+> relatively simple change as Alaska doesn’t touch any other states with
+> the updates not affecting the rest of the United States. The other
+> most recent change was in 2019 that included a county name and FIPS
+> change in South Dakota and that did not require a geometry change. The
+> next anticipated changes that will be required are in Connecticut due
+> to a redraw and renaming of their county level jurisdictions that were
+> initiated at the state level. This change will be made within the
+> existing detailed boundaries and shapefiles of these new jurisdiction
+> units. We will be redrawing the internal boundaries based on the best
+> available data, either from the U.S. Census, the state of Connecticut,
+> or commercial (ESRI) sources and the NDMC will need to work directly
+> with USDA to determine exactly how these will be implemented with
+> regards to programs triggered by the USDM. This process has been our
+> standard for updating changing geometry in base datasets that are used
+> in the weekly calculations. All the data utilized in the weekly
+> calculations are freely available on the United States Drought Monitor
+> website under the “data” tab:
+> <https://droughtmonitor.unl.edu/Data.aspx>. The final data are updated
+> each week during the official release of the USDM map and associated
+> statistics and data information. These data are also the same data
+> utilized in the making of the North American Drought Monitor. The NDMC
+> is the official home and archive of all the data, maps, and
+> information related to the United States Drought Monitor, and all this
+> information is freely available at <https://droughtmonitor.unl.edu/>.
+
+Given the pronouns used in this narrative, it was most likely written by
+NDMC staff.
+
+### Considerations
+
+A few considerations should be noted:
+
+1.  The Program Owner states, “the boundaries are from the ESRI dataset
+    from 2008 and are considered the industry standard for all
+    geopolitical boundaries and reference layers.” Esri is the company
+    that makes the ArcGIS software platform used by the NDMC for
+    geospatial processing and analysis. There is no single dataset that
+    would be considered an Esri counties dataset; rather, this likely
+    refers to a county boundary data that Esri provided prior to 2008.
+    While Esri software and the ArcGIS platform could arguably be called
+    the “industry standard”, the counties dataset to which the Program
+    Owner is referring is of unknown origin and provenance.
+
+2.  Furthermore, “industry standard” does not necessarily mean “federal
+    standard”. The county boundaries in this dataset differ
+    substantially from those of the US Census county boundary dataset,
+    the authoritative county boundaries of the United States.
+
+3.  The intersection of counties and USDM drought class polygons happens
+    on a weekly basis. In their response, Program Owner acknowledges
+    that the counties dataset used by the NDMC for this process have
+    been updated since 2008, but there is only one file provided (the
+    “current county boundaries”). It is unclear whether archives of past
+    versions of the FSA LFP county dataset exist.
+
+## 🗂️ Contents
+
+- [`foia/2025-FSA-08431-F Bocinsky.zip`](./foia/2025-FSA-08431-F%20Bocinsky.zip)
+  — original FOIA data and correspondence
+- [`fsa-lfp-counties.R`](./fsa-normal-grazing-period.R) — processing
+  script
+- [`fsa-lfp-counties.parquet`](./fsa-lfp-counties.parquet) — FSA LFP
+  county data in GeoParquet format
+- [`fsa-lfp-counties.xml`](./fsa-lfp-counties.xml) — ArcGIS metadata for
+  the FSA LFP county data
+
+------------------------------------------------------------------------
+
+## 📥 Input Data: FOIA Esri File Geodatabase
+
+The FOIA response contains annual NGP data from **2008 through 2024**
+for each pasture type, county, and program year.
+
+### Key Variables
+
+| Variable Name | Description |
 |----|----|
-| `STPO` | A two-letter USPS abbreviation for the state |
-| `FSA_Name` | The FSA-assigned administrative county name |
-| `FSA_ST` | A two-digit FSA-assigned administrative state code |
-| `FSA_STCOU` | A five-digit FSA-assigned administrative state and county code |
-| `STATENAME` | The full name of the state |
-| `FIPS_C` | A five-digit FIPS state and county code |
-| `COUNTYNAME` | The county Name |
-| `FIPSST` | A two-digit FIPS state code |
-| `FIPSCO` | A three-digit FIPS county code |
-| `NOTE` | Miscellaneous and historical notes on FSA boundary definitions |
-| `utm_lookup_identifier` | A numeric identifier used for joining county geometries to internal USDA lookup tables related to UTM projection metadata. |
-| `state_county_fips_code` | A five-digit FIPS state and county code; Identical to `FIPS_C`. |
-| `utm_zone_number` | The Universal Transverse Mercator (UTM) zone in which the county falls. |
-| `utm_zone_designator` | The Universal Transverse Mercator (UTM) latitude band designator in which the county falls. |
-| `Shape_Length` | The polygon edge length in meters |
-| `Shape_Area` | The polygon area in square meters |
-
-## 🗂️ Simplified TopoJSON Version
-
-A simplified version of the `FSA_Counties_dd17` dataset is included in
-this repository as `fsa-counties-dd17.topojson`. This version was
-created to reduce geometric complexity and ensure compatibility with
-common web mapping tools.
-
-### 🔧 Processing Steps
-
-This workflow processes the USDA Farm Service Agency (FSA) county
-definitions to produce a clean, simplified, and TopoJSON-compatible
-version of the dataset, suitable for use in web mapping applications.
-
-#### 1. Load and Preprocess FSA County Data
-
-- Load the original county boundaries from a zipped file geodatabase:  
-  `FSA_Counties_dd17.gdb.zip`
-- Exclude U.S. territories by filtering out counties with `FIPSST`
-  codes:
-  - American Samoa (`60`), Guam (`66`), Northern Mariana Islands (`69`),
-    Puerto Rico (`72`), U.S. Virgin Islands (`78`), etc.
-- Retain only the `FSA_STCOU` field and rename it to `id` for clarity.
-
-#### 2. Normalize Geometries
-
-- Perform a **round-trip** to GeoJSON:
-  - Write the filtered data to a temporary `.geojson` file.
-  - Read it back into R using `sf::read_sf()`.
-- This step removes non-standard geometries (e.g., curved edges or arcs)
-  that may interfere with simplification or projection.
-
-#### 3. Transform and Simplify Geometries
-
-- Project all features to the WGS84 coordinate reference system.
-- Use `rmapshaper::ms_explode()` to break multi-part polygons into
-  single-part features.
-- Recombine features by `id` using `ms_dissolve()` to ensure unique
-  county geometries.
-- Apply `ms_simplify(keep = 0.01)` to reduce geometric complexity while
-  preserving topology.
-
-#### 4. Clip to Official TIGER/Line Boundaries
-
-- Download generalized U.S. county boundaries via the `tigris` package:
-  - Use `cb = TRUE` and `resolution = "5m"` for cartographic accuracy.
-- Use `ms_explode()` and `ms_dissolve()` to produce a clean national
-  boundary.
-- Clip FSA geometries to the national boundary using `ms_clip()`,
-  removing slivers and enforcing alignment.
-
-#### 5. Further Geometry Cleaning
-
-- Use `sf::st_make_valid()` to repair any topological errors.
-- Repeat explode/dissolve operations as needed to clean up geometry
-  structure.
-- Reposition Alaska, Hawaii, and outlying areas using
-  `tigris::shift_geometry()` for optimal layout in web maps.
-- Convert all features to `MULTIPOLYGON` geometries.
-- Sort features by `id` to ensure consistent ordering.
-
-#### 6. Export Cleaned Data
-
-- Save the cleaned and simplified geometries to
-  `fsa-counties-dd17.geojson`.
-
-#### 7. Post-process with Mapshaper (CLI)
-
-- Use Mapshaper to:
-  - Clean and reorient geometry: `-clean rewind`
-  - Derive a new `state` field from the first two characters of `id`:  
-    `-each 'state=id.slice(0,2)'`
-  - Merge counties into states: `-dissolve field=state`
-  - Rename layers: `counties` and `states`
-  - Quantize coordinates for TopoJSON compression: `quantization=1e5`
-- Export the result as `fsa-counties-dd17.topojson`.
-
-#### 8. Cleanup
-
-- Remove the temporary GeoJSON file to tidy the workspace.
+| `Program Year` | Year the data applies to |
+| `State Name` | U.S. state |
+| `County Name` | County or county-equivalent name |
+| `State FSA Code` | FSA-assigned state code (not always ANSI/FIPS) |
+| `County FSA Code` | FSA-assigned county code (not always ANSI/FIPS) |
+| `Pasture Grazing Type` | Pasture classification (e.g., Native, Improved) |
+| `Normal Grazing Period Start Date` | Start date of typical grazing period |
+| `Normal Grazing Period End Date` | End date of typical grazing period |
 
 ------------------------------------------------------------------------
 
-## 🛠️ How to Use
+## 🧹 Processing Workflow
 
-1.  Unzip the `FSA_Counties_dd17.gdb.zip` file.
-2.  Open the `.gdb` in a GIS software environment such as
-    [QGIS](https://qgis.org) or [ArcGIS
-    Pro](https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview).
-3.  Use the layer properties to explore attributes and spatial coverage.
+The processing script
+[`fsa-normal-grazing-period.R`](./fsa-normal-grazing-period.R):
 
-------------------------------------------------------------------------
+1.  **Unzips and reads** the Excel workbook.
+2.  **Filters records** with missing dates.
+3.  **Constructs an `FSA Code`** by concatenating state and county FSA
+    codes.
+4.  **Cleans and standardizes** pasture type names.
+5.  **Corrects known data errors**, including:
 
-## 📍 Quick Start: Visualize the FSA_Counties_dd17 topojson data in R
+- Erroneous years and dates in KS, UT, MS, and MT records.
+- Handling duplicate and misassigned counties (e.g., Shoshone County,
+  ID).
 
-This snippet shows how to load the fsa-counties-dd17.topojson file from
-the archive and create a simple map using `sf` and `ggplot2`.
-
-``` r
-# Load required libraries
-library(sf)
-library(ggplot2) # For plotting
-library(tigris)  # For state boundaries
-library(rmapshaper) # For innerlines function
-
-## Download the FSA_Counties_dd17 archive
-counties <- 
-  sf::read_sf("https://sustainable-fsa.github.io/fsa-counties-dd17/fsa-counties-dd17.topojson",
-              layer = "counties") |>
-  sf::st_set_crs("EPSG:4326") |>
-  sf::st_transform("EPSG:5070")
-
-# Plot the map
-ggplot(counties) +
-  geom_sf(data = sf::st_union(counties),
-          fill = "grey80",
-          color = NA) +
-  geom_sf(data = counties,
-          aes(fill = state), 
-          color = NA,
-          show.legend = FALSE) +
-  geom_sf(data = rmapshaper::ms_innerlines(counties),
-          fill = NA,
-          color = "white",
-          linewidth = 0.1) +
-  geom_sf(data = counties |>
-            dplyr::group_by(state) |>
-            dplyr::summarise() |>
-            rmapshaper::ms_innerlines(),
-          fill = NA,
-          color = "white",
-          linewidth = 0.2) +
-  labs(title = "FSA County Administrative Boundaries",
-       subtitle = "Derived from the FSA_Counties_dd17 dataset") +
-  theme_void()
-```
-
-<img src="./example-1.png" style="display: block; margin: auto;" />
+6.  **Removes invalid or duplicate entries**.
+7.  **Exports** the cleaned data to
+    [`fsa-normal-grazing-period.csv`](./fsa-normal-grazing-period.csv).
+8.  **Renders** an interactive Quarto dashboard.
 
 ------------------------------------------------------------------------
 
-## 📌 Background
+## 📤 Output Data: Cleaned CSV
 
-The dataset originates from the **dd17** schema, a legacy geospatial
-data standard used by the USDA Farm Service Agency (FSA) for structuring
-county-level datasets. It served as a spatial index for county-level
-geospatial products and was used in conjunction with the **Common Land
-Unit (CLU)** framework.
+The file
+[`fsa-normal-grazing-period.csv`](./fsa-normal-grazing-period.csv) is a
+tidy dataset for analysis and visualization.
 
-While the dataset may no longer be updated or actively distributed by
-the USDA, it remains of historical and analytical interest —
-particularly for referencing USDA program boundaries, disaster
-assistance eligibility, and other geospatial analysis across agriculture
-and conservation.
+### Variables in Output
+
+| Variable Name | Description |
+|----|----|
+| `Program Year` | Year the data applies to |
+| `State Name` | Full U.S. state name |
+| `County Name` | County or county-equivalent name |
+| `State FSA Code` | FSA state code (not always ANSI/FIPS) |
+| `County FSA Code` | FSA county code (not always ANSI/FIPS) |
+| `FSA Code` | Combined `State FSA Code` + `County FSA Code` |
+| `Pasture Type` | Standardized pasture type |
+| `Normal Grazing Period Start Date` | Cleaned and corrected start date |
+| `Normal Grazing Period End Date` | Cleaned and corrected end date |
+
+------------------------------------------------------------------------
+
+<!-- ## 📍 Quick Start: Visualize a Normal Grazing Period Map in R -->
+
+<!-- This snippet shows how to load the Normal Grazing Period file from the archive and create a simple map using `sf` and `ggplot2`. -->
+
+<!-- ```{r example, message=FALSE, fig.align = 'center', dpi=300, fig.path = './'} -->
+
+<!-- # Load required libraries -->
+
+<!-- library(sf) -->
+
+<!-- library(ggplot2) # For plotting -->
+
+<!-- library(tigris)  # For state boundaries -->
+
+<!-- library(rmapshaper) # For innerlines function -->
+
+<!-- ## Get the Normal Grazing Period data -->
+
+<!-- ngp <-  -->
+
+<!--   readr::read_csv("fsa-normal-grazing-period.csv") -->
+
+<!-- ## The Normal Grazing Period data files use FSA county definitions -->
+
+<!-- ## Download from the FSA_Counties_dd17 archive -->
+
+<!-- counties <-  -->
+
+<!--   sf::read_sf("https://sustainable-fsa.github.io/fsa-counties-dd17/fsa-counties-dd17.topojson", -->
+
+<!--               layer = "counties") |> -->
+
+<!--   sf::st_set_crs("EPSG:4326") |> -->
+
+<!--   sf::st_transform("EPSG:5070") -->
+
+<!-- ## Calculate the 2024 Normal Grazing Period duration for Native Pasture, and -->
+
+<!-- ## combine with the county data -->
+
+<!-- ngp_counties <- -->
+
+<!--   ngp |> -->
+
+<!--   dplyr::filter(`Pasture Type` == "Native Pasture", -->
+
+<!--                 `Program Year` == 2024) |> -->
+
+<!--   dplyr::transmute( -->
+
+<!--     id = paste0(`State FSA Code`,`County FSA Code`), -->
+
+<!--     `Grazing Period Duration` =  -->
+
+<!--         (`Normal Grazing Period End Date` - `Normal Grazing Period Start Date`) |> -->
+
+<!--       magrittr::divide_by(7) |> -->
+
+<!--       as.integer() -->
+
+<!--   ) |> -->
+
+<!--   dplyr::left_join(counties) |> -->
+
+<!--   sf::st_as_sf() -->
+
+<!-- # Plot the map -->
+
+<!-- ggplot(counties) + -->
+
+<!--   geom_sf(data = sf::st_union(counties), -->
+
+<!--           fill = "grey80", -->
+
+<!--           color = NA) + -->
+
+<!--   geom_sf(data = ngp_counties, -->
+
+<!--           aes(fill = `Grazing Period Duration`),  -->
+
+<!--           color = NA) + -->
+
+<!--   geom_sf(data = rmapshaper::ms_innerlines(counties), -->
+
+<!--           fill = NA, -->
+
+<!--           color = "white", -->
+
+<!--           linewidth = 0.1) + -->
+
+<!--   geom_sf(data = counties |> -->
+
+<!--             dplyr::group_by(state) |> -->
+
+<!--             dplyr::summarise() |> -->
+
+<!--             rmapshaper::ms_innerlines(), -->
+
+<!--           fill = NA, -->
+
+<!--           color = "white", -->
+
+<!--           linewidth = 0.2) + -->
+
+<!--   khroma::scale_fill_batlowK(limits = c(0,52), -->
+
+<!--                             name = "NGP\nDuration\n(weeks)") + -->
+
+<!--   labs(title = "FSA Normal Grazing Period Duration", -->
+
+<!--        subtitle = "Native Pasture — 2024") + -->
+
+<!--   theme_void() -->
+
+<!-- ``` -->
+
+<!-- --- -->
+
+## 🧭 About FSA County Codes
+
+The USDA FSA uses custom county definitions that differ from standard
+ANSI/FIPS codes used by the U.S. Census. To align the Normal Grazing
+Period data with geographic boundaries, we use the FSA-specific
+geospatial dataset archived in the companion repository:
+
+🔗
+[**sustainable-fsa/fsa-counties-dd17**](https://sustainable-fsa.github.io/fsa-counties-dd17/)
+
+FSA county codes are documented in [FSA Handbook 1-CM, Exhibit
+101](https://www.fsa.usda.gov/Internet/FSA_File/1-cm_r03_a80.pdf).
+
+------------------------------------------------------------------------
 
 ## 📜 Citation
 
-If using this data in published work, consider citing it as:
+If using this data in published work, please cite:
 
-> USDA Farm Service Agency. *FSA_Counties_dd17 Geospatial Dataset*.
-> Accessed via GitHub archive, YYYY. Original metadata reference: [1-GIS
-> Amendment 2
-> (2009)](https://www.fsa.usda.gov/Internet/FSA_File/1-gis_r00_a02.pdf).
+> USDA Farm Service Agency. *Normal Grazing Periods, 2008–2024*. FOIA
+> request 2025-FSA-04691-F by R. Kyle Bocinsky. Accessed via GitHub
+> archive, YYYY.
+> <https://sustainable-fsa.github.io/fsa-normal-grazing-period/>
+
+------------------------------------------------------------------------
 
 ## 📄 License
 
-Data in the `FSA_Counties_dd17.gdb.zip` archive were produced by the
-United States Department of Agriculture (USDA), which are in the public
-domain under U.S. law (17 USC § 105).
+- **Raw FOIA data** (USDA): Public Domain (17 USC § 105)
+- **Processed data & scripts**: © R. Kyle Bocinsky, released under
+  [CC0](https://creativecommons.org/publicdomain/zero/1.0/) and [MIT
+  License](./LICENSE) as applicable
 
-You are free to:
-
-- Use, modify, and distribute the data for any purpose
-- Include it in derivative works or applications, with or without
-  attribution
-
-If you modify or build upon the data, you are encouraged (but not
-required) to clearly mark any changes and cite this repository as the
-source of the original.
-
-> No warranty is provided. Use at your own risk.
-
-The derivative `fsa-counties-dd17.topojson` file was created by R. Kyle
-Bocinsky and is released under the [Creative Commons CCZero
-license](https://creativecommons.org/publicdomain/zero/1.0/).
-
-The [`fsa-counties-dd17.R`](fsa-counties-dd17.R) script is copyright R.
-Kyle Bocinsky, and is released under the [MIT License](LICENSE).
+------------------------------------------------------------------------
 
 ## ⚠️ Disclaimer
 
-This dataset is archived for reference and educational use. It may not
-reflect current administrative boundaries and should not be used for
-official USDA program administration. Always consult the USDA or state
-FSA office for current data.
+This dataset is archived for research and educational use only. It may
+not reflect current USDA administrative boundaries or official LFP
+policy. Always consult your **local FSA office** for the latest program
+guidance.
+
+To locate your nearest USDA Farm Service Agency office, use the USDA
+Service Center Locator:
+
+🔗 [**USDA Service Center
+Locator**](https://offices.sc.egov.usda.gov/locator/app)
+
+------------------------------------------------------------------------
 
 ## 👏 Acknowledgment
 
-This work is part of the [*Enhancing Sustainable Disaster Relief in
-FSA Programs: Non-stationarity at the Intersection of Normal Grazing
-Periods and US Drought
-Assessment*](https://www.ars.usda.gov/research/project/?accnNo=444612)
-project. It is supported by US Department of Agriculture Office of the
-Chief Economist (OCE), Office of Energy and Environmental Policy (OEEP)
-funds passed through to Research, Education, and Economics mission area.
-We also acknowledge and appreciate the assistance of the USDA Climate
-Hubs in securing these data.
+This project is part of:
+
+**[*Enhancing Sustainable Disaster Relief in FSA
+Programs*](https://www.ars.usda.gov/research/project/?accnNo=444612)**  
+Supported by USDA OCE/OEEP and USDA Climate Hubs  
+Prepared by the [Montana Climate Office](https://climate.umt.edu)
+
+------------------------------------------------------------------------
 
 ## ✉️ Contact
 
-Please contact Kyle Bocinsky (<kyle.bocinsky@umontana.edu>) with any
-questions.
+Questions? Contact Kyle Bocinsky: <kyle.bocinsky@umontana.edu>
