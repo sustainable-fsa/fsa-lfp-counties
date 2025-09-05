@@ -3,8 +3,6 @@
 Release](https://img.shields.io/github/v/release/sustainable-fsa/fsa-lfp-counties?label=GitHub%20Release&color=%239c27b0)](https://github.com/sustainable-fsa/fsa-lfp-counties)
 <!-- [![DOI](https://zenodo.org/badge/814751699.svg)](https://zenodo.org/badge/latestdoi/814751699) -->
 
-# FSA LFP Counties Archive
-
 This repository is an archive of the county boundary dataset used to
 determine USDA [Livestock Forage Disaster Program
 (LFP)](https://www.fsa.usda.gov/resources/programs/livestock-forage-disaster-program-lfp)
