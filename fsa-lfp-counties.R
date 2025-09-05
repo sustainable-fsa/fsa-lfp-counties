@@ -15,8 +15,10 @@ pak::pak(
     "sf?source",
     "curl",
     "tidyverse",
-    "tigris",
-    "rmapshaper"
+    "archive",
+    "digest",
+    "rmapshaper", # For README example
+    "tigris" # For README example
   )
 )
 
@@ -73,6 +75,39 @@ fsa_lfp_counties <-
 identical(fsa_lfp_counties$file1,
           fsa_lfp_counties$file2)
 
+## Also confirm via checksum
+# This function confirms whether two firectories contain identical contents
+checksum_dir <-
+  function(x){
+    list.files(x, full.names = TRUE, recursive = TRUE, include.dirs = FALSE) %>%
+      purrr::map_chr(digest::digest,
+                     algo = "md5",
+                     file = TRUE) %>%
+      digest::digest(algo = "md5",
+                     serialize = FALSE)
+  }
+
+
+
+file.path("foia",
+          "2025-FSA-08431-F Bocinsky",
+          "25-08431-F - Bocinsky (3 Dec 25).zip") %>%
+  {
+    purrr::map_chr(
+      archive::archive(.)$path,
+      \(x){
+        archive::archive_read(., x, mode = "rb") %>%
+          archive::archive_extract(dir = file.path(tempdir(), basename(x)))
+        return(file.path(tempdir(), basename(x)))
+      }
+      
+    )  
+  } %>%
+  file.path(.,"USDMcounties.gdb") %>%
+  purrr::map_chr(checksum_dir) %>%
+  {all(. == .[1])}
+
+## They are identical!
 # So, write the first one to a parquet file
 fsa_lfp_counties %$%
   file1 %>%

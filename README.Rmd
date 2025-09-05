@@ -56,137 +56,85 @@ A few considerations should be noted:
 
 ---
 
-## 📥 Input Data: FOIA Esri File Geodatabase
+## Data Processing
 
-The FOIA response contains annual NGP data from **2008 through 2024** for each pasture type, county, and program year.
+The 2025-09-04 FOIA response contains two identical zipped Esri file geodatabases, confirmed via calculating file-level MD5 checksums. The processing script [`fsa-lfp-counties.R`](./`fsa-lfp-counties.R):
 
-### Key Variables
+1. **Unzips and reads** the zipped Esri file geodatabases.
+2. **Confirms** that the databases are identical.
+3. **Reads** one of the databases into a spatial object in R using the `sf` package.
+4. **Writes** the spatial counties data to `fsa-lfp-counties.parquet` in Brotli-compressed Apache Parquet format.
+5. **Extracts** Esri metadata from the original file geodatabase, and writes it in XML format as `fsa-lfp-counties.xml`
+6. **Renders** this document into `README.md`.
 
-| Variable Name                        | Description                                           |
-|-------------------------------------|-------------------------------------------------------|
-| `Program Year`                      | Year the data applies to                              |
-| `State Name`                        | U.S. state                                            |
-| `County Name`                       | County or county-equivalent name                      |
-| `State FSA Code`                    | FSA-assigned state code (not always ANSI/FIPS)       |
-| `County FSA Code`                   | FSA-assigned county code (not always ANSI/FIPS)      |
-| `Pasture Grazing Type`             | Pasture classification (e.g., Native, Improved)       |
-| `Normal Grazing Period Start Date` | Start date of typical grazing period                  |
-| `Normal Grazing Period End Date`   | End date of typical grazing period                    |
+### Data Description
+The data are in the NAD 1983 Albers contiguous USA coordinate reference system ([ESRI:102003](https://spatialreference.org/ref/esri/102003/)), though metadata suggest that CRS has been transformed from what was originally a geographic reference system (most likely [WGS 84 EPSG:4326](https://spatialreference.org/ref/epsg/4326/)). The dataset contains several columns that are derived via Visual Basic processing scripts, as well as geographic statistics (length and area). These columns are not well documented, but can be inferred from the data.
 
----
-
-## 🧹 Processing Workflow
-
-The processing script [`fsa-normal-grazing-period.R`](./fsa-normal-grazing-period.R):
-
-1. **Unzips and reads** the Excel workbook.
-2. **Filters records** with missing dates.
-3. **Constructs an `FSA Code`** by concatenating state and county FSA codes.
-4. **Cleans and standardizes** pasture type names.
-5. **Corrects known data errors**, including:
-- Erroneous years and dates in KS, UT, MS, and MT records.
-- Handling duplicate and misassigned counties (e.g., Shoshone County, ID).
-6. **Removes invalid or duplicate entries**.
-7. **Exports** the cleaned data to [`fsa-normal-grazing-period.csv`](./fsa-normal-grazing-period.csv).
-8. **Renders** an interactive Quarto dashboard.
+| Variable Name   | Description                                                                       |
+|-----------------|-----------------------------------------------------------------------------------|
+| `ISCONUS`       | Whether the county is part of the Continental United States                       |
+| `ISTOTAL`       | Whether the county is an outlying territory of the US                             |
+| `StateFIPS`     | A two-digit FIPS state code                                                       |
+| `WKID`          | The Well-Known ID for a spatial reference system (SRS) — presumably the original  |
+| `CountyFIPS`    | A five-digit FIPS state and county code                                           |
+| `CountyName`    | The county name                                                                   |
+| `StateAbbr`     | The state abbreviation                                                            |
+| `Shape_Length`  | The boundary length of the county, in meters                                      |
+| `Shape_Area`    | The area of the county, in square meters                                          |
 
 ---
 
-## 📤 Output Data: Cleaned CSV
+## 📍 Quick Start: Visualize the FSA_Counties_dd17 topojson data in R
 
-The file [`fsa-normal-grazing-period.csv`](./fsa-normal-grazing-period.csv) is a tidy dataset for analysis and visualization.
+This snippet shows how to load the fsa-counties-dd17.topojson file from the archive and create a simple map using `sf` and `ggplot2`.
 
-### Variables in Output
+```{r example, message=FALSE, fig.align = 'center', dpi=300, fig.path = './'}
+# Load required libraries
+library(sf)
+library(ggplot2) # For plotting
+library(rmapshaper) # For innerlines function
 
-| Variable Name                        | Description                                           |
-|-------------------------------------|-------------------------------------------------------|
-| `Program Year`                      | Year the data applies to                              |
-| `State Name`                        | Full U.S. state name                                  |
-| `County Name`                       | County or county-equivalent name                      |
-| `State FSA Code`                    | FSA state code (not always ANSI/FIPS)                 |
-| `County FSA Code`                   | FSA county code (not always ANSI/FIPS)                |
-| `FSA Code`                          | Combined `State FSA Code` + `County FSA Code`         |
-| `Pasture Type`                      | Standardized pasture type                             |
-| `Normal Grazing Period Start Date` | Cleaned and corrected start date                      |
-| `Normal Grazing Period End Date`   | Cleaned and corrected end date                        |
+## Load the fsa-lfp-counties parquet file
+counties <- 
+  # You can read straight from online
+  # sf::read_sf("https://sustainable-fsa.github.io/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
+  sf::read_sf("fsa-lfp-counties.parquet") %>%
+  # transform to WGS 84
+  sf::st_transform("EPSG:4326") %>%
+  # drop outlying islands for mapping
+  dplyr::filter(!(StateFIPS %in% c("60",
+                                   "78",
+                                   "74",
+                                   "70",
+                                   "64",
+                                   "14", "52", "69", "66", "68"))) %>%
+  # Shift and rescale AK, HI, and PR
+  tigris::shift_geometry()
 
----
-
-<!-- ## 📍 Quick Start: Visualize a Normal Grazing Period Map in R -->
-
-<!-- This snippet shows how to load the Normal Grazing Period file from the archive and create a simple map using `sf` and `ggplot2`. -->
-
-<!-- ```{r example, message=FALSE, fig.align = 'center', dpi=300, fig.path = './'} -->
-<!-- # Load required libraries -->
-<!-- library(sf) -->
-<!-- library(ggplot2) # For plotting -->
-<!-- library(tigris)  # For state boundaries -->
-<!-- library(rmapshaper) # For innerlines function -->
-
-<!-- ## Get the Normal Grazing Period data -->
-<!-- ngp <-  -->
-<!--   readr::read_csv("fsa-normal-grazing-period.csv") -->
-
-<!-- ## The Normal Grazing Period data files use FSA county definitions -->
-<!-- ## Download from the FSA_Counties_dd17 archive -->
-<!-- counties <-  -->
-<!--   sf::read_sf("https://sustainable-fsa.github.io/fsa-counties-dd17/fsa-counties-dd17.topojson", -->
-<!--               layer = "counties") |> -->
-<!--   sf::st_set_crs("EPSG:4326") |> -->
-<!--   sf::st_transform("EPSG:5070") -->
-
-<!-- ## Calculate the 2024 Normal Grazing Period duration for Native Pasture, and -->
-<!-- ## combine with the county data -->
-<!-- ngp_counties <- -->
-<!--   ngp |> -->
-<!--   dplyr::filter(`Pasture Type` == "Native Pasture", -->
-<!--                 `Program Year` == 2024) |> -->
-<!--   dplyr::transmute( -->
-<!--     id = paste0(`State FSA Code`,`County FSA Code`), -->
-<!--     `Grazing Period Duration` =  -->
-
-<!--         (`Normal Grazing Period End Date` - `Normal Grazing Period Start Date`) |> -->
-<!--       magrittr::divide_by(7) |> -->
-<!--       as.integer() -->
-<!--   ) |> -->
-<!--   dplyr::left_join(counties) |> -->
-<!--   sf::st_as_sf() -->
-
-<!-- # Plot the map -->
-<!-- ggplot(counties) + -->
-<!--   geom_sf(data = sf::st_union(counties), -->
-<!--           fill = "grey80", -->
-<!--           color = NA) + -->
-<!--   geom_sf(data = ngp_counties, -->
-<!--           aes(fill = `Grazing Period Duration`),  -->
-<!--           color = NA) + -->
-<!--   geom_sf(data = rmapshaper::ms_innerlines(counties), -->
-<!--           fill = NA, -->
-<!--           color = "white", -->
-<!--           linewidth = 0.1) + -->
-<!--   geom_sf(data = counties |> -->
-<!--             dplyr::group_by(state) |> -->
-<!--             dplyr::summarise() |> -->
-<!--             rmapshaper::ms_innerlines(), -->
-<!--           fill = NA, -->
-<!--           color = "white", -->
-<!--           linewidth = 0.2) + -->
-<!--   khroma::scale_fill_batlowK(limits = c(0,52), -->
-<!--                             name = "NGP\nDuration\n(weeks)") + -->
-<!--   labs(title = "FSA Normal Grazing Period Duration", -->
-<!--        subtitle = "Native Pasture — 2024") + -->
-<!--   theme_void() -->
-<!-- ``` -->
-
-<!-- --- -->
-
-## 🧭 About FSA County Codes
-
-The USDA FSA uses custom county definitions that differ from standard ANSI/FIPS codes used by the U.S. Census. To align the Normal Grazing Period data with geographic boundaries, we use the FSA-specific geospatial dataset archived in the companion repository:
-
-🔗 [**sustainable-fsa/fsa-counties-dd17**](https://sustainable-fsa.github.io/fsa-counties-dd17/)
-
-FSA county codes are documented in [FSA Handbook 1-CM, Exhibit 101](https://www.fsa.usda.gov/Internet/FSA_File/1-cm_r03_a80.pdf).
+# Plot the map
+ggplot(counties) +
+  geom_sf(data = sf::st_union(counties),
+          fill = "grey80",
+          color = NA) +
+  geom_sf(data = counties,
+          aes(fill = StateAbbr), 
+          color = NA,
+          show.legend = FALSE) +
+  geom_sf(data = rmapshaper::ms_innerlines(counties),
+          fill = NA,
+          color = "white",
+          linewidth = 0.1) +
+  geom_sf(data = counties |>
+            dplyr::group_by(StateAbbr) |>
+            dplyr::summarise() |>
+            rmapshaper::ms_innerlines(),
+          fill = NA,
+          color = "white",
+          linewidth = 0.2) +
+  labs(title = "FSA LFP County Boundaries",
+       subtitle = "Used for calculating program eligibility") +
+  theme_void()
+```
 
 ---
 
@@ -194,7 +142,7 @@ FSA county codes are documented in [FSA Handbook 1-CM, Exhibit 101](https://www.
 
 If using this data in published work, please cite:
 
-> USDA Farm Service Agency. *Normal Grazing Periods, 2008–2024*. FOIA request 2025-FSA-04691-F by R. Kyle Bocinsky. Accessed via GitHub archive, YYYY. https://sustainable-fsa.github.io/fsa-normal-grazing-period/
+> USDA Farm Service Agency. *Livestock Forage Disaster Program County Boundaries*. FOIA request 2025-FSA-08431-F by R. Kyle Bocinsky. Accessed via GitHub archive, YYYY. https://sustainable-fsa.github.io/fsa-lfp-counties/
 
 ---
 
