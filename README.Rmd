@@ -9,8 +9,6 @@ editor_options:
 [![GitHub Release](https://img.shields.io/github/v/release/sustainable-fsa/fsa-lfp-counties?label=GitHub%20Release&color=%239c27b0)](https://github.com/sustainable-fsa/fsa-lfp-counties)
 <!-- [![DOI](https://zenodo.org/badge/814751699.svg)](https://zenodo.org/badge/latestdoi/814751699) -->
 
-# FSA LFP Counties Archive
-
 This repository is an archive of the county boundary dataset used to determine USDA [Livestock Forage Disaster Program (LFP)](https://www.fsa.usda.gov/resources/programs/livestock-forage-disaster-program-lfp) eligibility. 
 
 Each week, eligibility for the LFP is determined for each county in the United States. Federal law and FSA guidance describes a process by which [county-level eligibility](https://sustainable-fsa.github.io/fsa-lfp-eligibility/) is determined by the intersection of county boundaries, the [United States Drought Monitor weekly drought assessment](https://sustainable-fsa.github.io/usdm/), and the [normal grazing period](https://sustainable-fsa.github.io/fsa-normal-grazing-period/) for each type of grazing land in each county.
