@@ -31,86 +31,30 @@ library(xml2)
 sf::sf_use_s2(TRUE)
 
 ## Data delivered via the FOIA office included two zipped archives in a Box folder:
-## USDMcounties.gdb - file 1.zip and USDMcounties.gdb - file 2.zip
-## This code demonstrates they are identical.
+## USDM_Counties_data.gdb.zip and scripts.zip
+## This code extracts both, and writes them as a Parquet and associated metadata.
+
+# Extract outer Zip to a temporary directory
+archive::archive_extract(
+  archive = file.path("foia",
+                      "2025-FSA-08431-F Bocinsky",
+                      "25-08431-F - Bocinsky (3 Dec 25).zip"),
+  dir = tempdir()
+)
 
 #Use VSIZIP to read paths inside nested zip archive
-fsa_lfp_counties_files <- 
-  list(
-    file1 =
-      file.path("/vsizip",
-                "foia",
-                "2025-FSA-08431-F Bocinsky",
-                "25-08431-F - Bocinsky (3 Dec 25).zip",
-                "25-08431-F - Bocinsky (3 Dec 25)",
-                "USDMcounties.gdb - file 1.zip"),
-    file2 =
-      file.path("/vsizip",
-                "foia",
-                "2025-FSA-08431-F Bocinsky",
-                "25-08431-F - Bocinsky (3 Dec 25).zip",
-                "25-08431-F - Bocinsky (3 Dec 25)",
-                "USDMcounties.gdb - file 2.zip")
-  ) %>%
-  purrr::map(
-    \(x){
-      file.path("/vsizip",
-                x,
-                "USDMcounties.gdb"
-      )
-    }
-  )
+fsa_lfp_counties_file <-
+  file.path(
+    "/vsizip",
+    tempdir(),
+    "25-08431-F - Bocinsky (3 Dec 25)",
+    "USDM_Counties_data.gdb.zip",
+    "USDM_Counties_data.gdb")
 
 fsa_lfp_counties <-
-  fsa_lfp_counties_files %>%
-  purrr::map(
-    \(x){
-      sf::read_sf(
-        x
-      )
-    }
-  )
-
-# They are identical
-identical(fsa_lfp_counties$file1,
-          fsa_lfp_counties$file2)
-
-## Also confirm via checksum
-# This function confirms whether two firectories contain identical contents
-checksum_dir <-
-  function(x){
-    list.files(x, full.names = TRUE, recursive = TRUE, include.dirs = FALSE) %>%
-      purrr::map_chr(digest::digest,
-                     algo = "md5",
-                     file = TRUE) %>%
-      digest::digest(algo = "md5",
-                     serialize = FALSE)
-  }
-
-
-
-file.path("foia",
-          "2025-FSA-08431-F Bocinsky",
-          "25-08431-F - Bocinsky (3 Dec 25).zip") %>%
-  {
-    purrr::map_chr(
-      archive::archive(.)$path,
-      \(x){
-        archive::archive_read(., x, mode = "rb") %>%
-          archive::archive_extract(dir = file.path(tempdir(), basename(x)))
-        return(file.path(tempdir(), basename(x)))
-      }
-      
-    )  
-  } %>%
-  file.path(.,"USDMcounties.gdb") %>%
-  purrr::map_chr(checksum_dir) %>%
-  {all(. == .[1])}
-
-## They are identical!
-# So, write the first one to a parquet file
-fsa_lfp_counties %$%
-  file1 %>%
+  fsa_lfp_counties_file %>%
+  sf::read_sf() %>%
+  dplyr::arrange(CountyFIPS) %T>%
   sf::write_sf(
     "fsa-lfp-counties.parquet",
     driver = "Parquet",
@@ -120,11 +64,12 @@ fsa_lfp_counties %$%
   )
 
 sf::gdal_utils(util = "vectortranslate",
-               source = fsa_lfp_counties_files$file1,
+               source = fsa_lfp_counties_file,
                destination = "fsa-lfp-counties.gml",
-               options = c("-f", "GML",
-                           "-sql", "GetLayerMetadata counties_detailed_all_2021"
-               )
+               options = 
+                 c("-f", "GML",
+                   "-sql", "GetLayerMetadata counties_detailed_total_2021"
+                 )
 )
 
 xml2::read_xml("fsa-lfp-counties.gml") %>%
@@ -139,14 +84,44 @@ unlink(
   )
 )
 
+# Extract and rename the scripts
+archive::archive_extract(
+  file.path(
+    tempdir(),
+    "25-08431-F - Bocinsky (3 Dec 25)",
+    "scripts.zip"
+  )
+)
+
+file.rename(from = c("usdm_data.py",
+                     "usdm_tabulatestats.py"),
+            to = c(
+              "fsa-lfp-counties-usdm_data.py",
+              "fsa-lfp-counties-usdm_tabulatestats.py"
+            ))
+
+
 # # Also identical to the NDMC Albers.gdb dataset
 # sf::read_sf(
-#   "/vsizip//vsicurl/https://sustainable-fsa.github.io/ndmc-counties-albers/Albers.gdb.zip/Albers.gdb", 
-#   layer = "counties_detailed_all_2021") %>%
+#   "/vsizip//vsicurl/https://sustainable-fsa.github.io/ndmc-counties-albers/Albers.gdb.zip/Albers.gdb",
+#   layer = "counties_detailed_total_2021") %>%
 #   dplyr::select(
-#     names(fsa_lfp_counties$file1)
-#     ) %>%
-#   identical(fsa_lfp_counties$file1)
+#     names(fsa_lfp_counties_file %>%
+#             sf::read_sf())
+#   ) %>%
+#   dplyr::arrange(CountyFIPS) %>%
+#   tibble::as_tibble() %>%
+#   dplyr::rename(Albers = Shape) %>%
+#     dplyr::select(CountyFIPS, Albers) %>%
+#   dplyr::left_join(
+#     fsa_lfp_counties %>%
+#       dplyr::arrange(CountyFIPS) %>%
+#       tibble::as_tibble() %>%
+#       dplyr::rename(FOIA = Shape) %>%
+#       dplyr::select(CountyFIPS, FOIA)
+#   ) %>%
+#   dplyr::rowwise() %>%
+#   dplyr::filter(!identical(Albers,FOIA))
 
 # Knit the readme
 rmarkdown::render("README.Rmd")

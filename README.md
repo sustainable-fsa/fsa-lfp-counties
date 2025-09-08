@@ -1,7 +1,7 @@
 
 [![GitHub
 Release](https://img.shields.io/github/v/release/sustainable-fsa/fsa-lfp-counties?label=GitHub%20Release&color=%239c27b0)](https://github.com/sustainable-fsa/fsa-lfp-counties)
-<!-- [![DOI](https://zenodo.org/badge/814751699.svg)](https://zenodo.org/badge/latestdoi/814751699) -->
+[![DOI](https://zenodo.org/badge/1050800186.svg)](https://zenodo.org/badge/latestdoi/1050800186)
 
 This repository is an archive of the county boundary dataset used to
 determine USDA [Livestock Forage Disaster Program
@@ -39,8 +39,9 @@ the administration of the LFP.
 
 The data in this repository were acquired via FOIA request
 **2025-FSA-08431-F** by R. Kyle Bocinsky (Montana Climate Office) and
-fulfilled on August 4, 2025. The FOIA response, including the original
-Esri file geodatabase, is archived in the [`foia`](./foia) directory.
+fulfilled on September 8, 2025. The FOIA response, including the
+original Esri file geodatabase, is archived in the [`foia`](./foia)
+directory.
 
 ## FOIA Final Response
 
@@ -65,7 +66,7 @@ drought determinations, including how those data have changed through
 time and any computer scripts or protocols used when making that
 determination.
 
-In the FOIA Final Response, received on September 4, 2025, the Program
+In the FOIA Final Response, received on September 8, 2025, the Program
 Owner provided a geospatial counties dataset from the National Drought
 Mitigation Center, who produces the USDM. The FOIA response also
 provided the following explanation:
@@ -143,29 +144,38 @@ A few considerations should be noted:
 
 - [`foia/2025-FSA-08431-F Bocinsky.zip`](./foia/2025-FSA-08431-F%20Bocinsky.zip)
   — original FOIA data and correspondence
-- [`fsa-lfp-counties.R`](./fsa-normal-grazing-period.R) — processing
-  script
+- [`fsa-lfp-counties.R`](./fsa-normal-grazing-period.R) — archive
+  processing script
 - [`fsa-lfp-counties.parquet`](./fsa-lfp-counties.parquet) — FSA LFP
   county data in GeoParquet format
 - [`fsa-lfp-counties.xml`](./fsa-lfp-counties.xml) — ArcGIS metadata for
   the FSA LFP county data
+- [`fsa-lfp-counties-usdm_data.py`](./fsa-lfp-counties-usdm_data.py) —
+  Python functions for processing and clipping USDM shapes to the
+  counties dataset
+- [`fsa-lfp-counties-usdm_tabulatestats.py`](./fsa-lfp-counties-usdm_tabulatestats.py)
+  — Python functions for calculating zonal statistics for counties and
+  other geometries
 
 ------------------------------------------------------------------------
 
 ## Data Processing
 
-The 2025-09-04 FOIA response contains two identical zipped Esri file
-geodatabases, confirmed via calculating file-level MD5 checksums. The
+The 2025-09-04 FOIA response contains two zipped archives: one
+containing an Esri file geodatabase with the county definitions, and one
+containing two python scripts of code for processing and clipping USDM
+shapes to the counties dataset and calculating zonal statistics. The
 processing script [`fsa-lfp-counties.R`](./%60fsa-lfp-counties.R):
 
-1.  **Unzips and reads** the zipped Esri file geodatabases.
-2.  **Confirms** that the databases are identical.
-3.  **Reads** one of the databases into a spatial object in R using the
-    `sf` package.
-4.  **Writes** the spatial counties data to `fsa-lfp-counties.parquet`
+1.  **Unzips** the zipped archive.
+2.  **Reads** the Esri file geodatabase into a spatial object in R using
+    the `sf` package.
+3.  **Writes** the spatial counties data to `fsa-lfp-counties.parquet`
     in Brotli-compressed Apache Parquet format.
-5.  **Extracts** Esri metadata from the original file geodatabase, and
-    writes it in XML format as `fsa-lfp-counties.xml`
+4.  **Extracts** Esri metadata from the file geodatabase, and writes it
+    in XML format as `fsa-lfp-counties.xml`.
+5.  **Copies and renames** the USDM processing scripts to the base
+    directory.
 6.  **Renders** this document into `README.md`.
 
 ### Data Description
@@ -175,27 +185,29 @@ system ([ESRI:102003](https://spatialreference.org/ref/esri/102003/)),
 though metadata suggest that CRS has been transformed from what was
 originally a geographic reference system (most likely [WGS 84
 EPSG:4326](https://spatialreference.org/ref/epsg/4326/)). The dataset
-contains several columns that are derived via Visual Basic processing
-scripts, as well as geographic statistics (length and area). These
-columns are not well documented, but can be inferred from the data.
+contains several columns that are derived via Visual Basic or Python
+processing scripts, as well as geographic statistics (length and area).
+These columns are not well documented, but can be inferred from the
+data.
 
-| Variable Name  | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| `ISCONUS`      | Whether the county is part of the Continental United States                      |
-| `ISTOTAL`      | Whether the county is an outlying territory of the US                            |
-| `StateFIPS`    | A two-digit FIPS state code                                                      |
-| `WKID`         | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
-| `CountyFIPS`   | A five-digit FIPS state and county code                                          |
-| `CountyName`   | The county name                                                                  |
-| `StateAbbr`    | The state abbreviation                                                           |
-| `Shape_Length` | The boundary length of the county, in meters                                     |
-| `Shape_Area`   | The area of the county, in square meters                                         |
+| Variable Name | Description |
+|----|----|
+| `ISCONUS` | Whether the county is part of the Continental United States |
+| `ISTOTAL` | Whether the county is an outlying territory of the US |
+| `StateFIPS` | A two-digit FIPS state code |
+| `WKID` | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
+| `CountyName` | The county name |
+| `CountyFIPS` | A five-digit FIPS state and county code |
+| `StateAbbr` | The state abbreviation |
+| `ShowCounty` | A boolean field presumably related to internal USDM mapping |
+| `Shape_Length` | The boundary length of the county, in meters |
+| `Shape_Area` | The area of the county, in square meters |
 
 ------------------------------------------------------------------------
 
-## 📍 Quick Start: Visualize the FSA_Counties_dd17 topojson data in R
+## 📍 Quick Start: Visualize the FSA LFP Counties data in R
 
-This snippet shows how to load the fsa-counties-dd17.topojson file from
+This snippet shows how to load the `fsa-lfp-counties.parquet` file from
 the archive and create a simple map using `sf` and `ggplot2`.
 
 ``` r
@@ -211,13 +223,6 @@ counties <-
   sf::read_sf("fsa-lfp-counties.parquet") %>%
   # transform to WGS 84
   sf::st_transform("EPSG:4326") %>%
-  # drop outlying islands for mapping
-  dplyr::filter(!(StateFIPS %in% c("60",
-                                   "78",
-                                   "74",
-                                   "70",
-                                   "64",
-                                   "14", "52", "69", "66", "68"))) %>%
   # Shift and rescale AK, HI, and PR
   tigris::shift_geometry()
 

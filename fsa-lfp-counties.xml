@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata xml:lang="en">
   <Esri>
-    <CreaDate>20250817</CreaDate>
-    <CreaTime>23241200</CreaTime>
+    <CreaDate>20210714</CreaDate>
+    <CreaTime>09322000</CreaTime>
     <ArcGISFormat>1.0</ArcGISFormat>
     <SyncOnce>FALSE</SyncOnce>
     <DataProperties>
@@ -131,42 +131,113 @@
         <Process ToolSource="c:\program files (x86)\arcgis\desktop10.7\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20191014" Time="151038">CalculateField counties_detailed_all RCC "Midwest" VB #</Process>
         <Process ToolSource="c:\program files (x86)\arcgis\desktop10.7\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20191014" Time="151052">CalculateField counties_detailed_all RCC "High Plains" VB #</Process>
         <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20201105" Time="110007">CalculateField counties_detailed_all WKID 4326 VB #</Process>
-        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210122" Time="134538">CalculateField counties_detailed_all_2021 PD_C2010 "[P_C2010] / [A_CNTY_]" VB #</Process>
-        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210122" Time="134717">CalculateField counties_detailed_all_2021 PD_C2010 "[P_C2010] / [A_CNTY_]" VB #</Process>
-        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210122" Time="134739">CalculateField counties_detailed_all_2021 PD_C2010 "[P_C2010] / [A_CNTY_]" VB #</Process>
-        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210805" Time="104719">CalculateField counties_detailed_all_2021 CountyFIPS [FIPS] VB #</Process>
-        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210805" Time="104749">CalculateField counties_detailed_all_2021 CountyName [COUNTY] VB #</Process>
-        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210805" Time="104826">CalculateField counties_detailed_all_2021 StateAbbr [STATE] VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100355">CalculateField counties_detailed_total_2021 A_STATE 51604.36877 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100431">CalculateField counties_detailed_total_2021 A_STATE 582568.3855 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100459">CalculateField counties_detailed_total_2021 A_STATE 114034.8495 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100525">CalculateField counties_detailed_total_2021 A_STATE 53162.77301 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100556">CalculateField counties_detailed_total_2021 A_STATE 158147.9016 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100636">CalculateField counties_detailed_total_2021 A_STATE 104145.6854 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100656">CalculateField counties_detailed_total_2021 A_STATE 4978.769367 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100719">CalculateField counties_detailed_total_2021 A_STATE 2049.967198 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100902">CalculateField counties_detailed_total_2021 A_STATE 56383.60176 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100924">CalculateField counties_detailed_total_2021 A_STATE 58777.2772 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="100944">CalculateField counties_detailed_total_2021 A_STATE 6302.155322 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101003">CalculateField counties_detailed_total_2021 A_STATE 83568.45449 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101028">CalculateField counties_detailed_total_2021 A_STATE 56382.56668 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101052">CalculateField counties_detailed_total_2021 A_STATE 36199.1202
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101110">CalculateField counties_detailed_total_2021 A_STATE 56311.51608
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101138">CalculateField counties_detailed_total_2021 A_STATE 82287.42902
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101218">CalculateField counties_detailed_total_2021 A_STATE 40357.3813
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101240">CalculateField counties_detailed_total_2021 A_STATE 46909.55703
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101334">CalculateField counties_detailed_total_2021 A_STATE 32469.87361
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101451">CalculateField counties_detailed_total_2021 A_STATE 9805.813131 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101510">CalculateField counties_detailed_total_2021 A_STATE 8058.460944 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101530">CalculateField counties_detailed_total_2021 A_STATE 58157.55126 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101551">CalculateField counties_detailed_total_2021 A_STATE 84381.20555 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101609">CalculateField counties_detailed_total_2021 A_STATE 47709.93317 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101627">CalculateField counties_detailed_total_2021 A_STATE 69718.08495 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101645">CalculateField counties_detailed_total_2021 A_STATE 147088.3466 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101707">CalculateField counties_detailed_total_2021 A_STATE 77300.01955 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101757">CalculateField counties_detailed_total_2021 A_STATE 110534.8625 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101814">CalculateField counties_detailed_total_2021 A_STATE 9259.55909 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101831">CalculateField counties_detailed_total_2021 A_STATE 7642.728935 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101848">CalculateField counties_detailed_total_2021 A_STATE 121573.2404 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101911">CalculateField counties_detailed_total_2021 A_STATE 48561.1347 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101929">CalculateField counties_detailed_total_2021 A_STATE 49268.60162 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="101947">CalculateField counties_detailed_total_2021 A_STATE 70706.30771 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102006">CalculateField counties_detailed_total_2021 A_STATE 41309.56957 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102032">CalculateField counties_detailed_total_2021 A_STATE 69899.89729 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102048">CalculateField counties_detailed_total_2021 A_STATE 96914.71118 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102103">CalculateField counties_detailed_total_2021 A_STATE 45289.07963 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102123">CalculateField counties_detailed_total_2021 A_STATE 1081.88996 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102145">CalculateField counties_detailed_total_2021 A_STATE 30900.60685 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102211">CalculateField counties_detailed_total_2021 A_STATE 77127.08442
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102230">CalculateField counties_detailed_total_2021 A_STATE 42155.23729
+ VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102253">CalculateField counties_detailed_total_2021 A_STATE 265138.1043 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102308">CalculateField counties_detailed_total_2021 A_STATE 84878.08397 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102324">CalculateField counties_detailed_total_2021 A_STATE 9633.104408 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102356">CalculateField counties_detailed_total_2021 A_STATE 39967.61694 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102416">CalculateField counties_detailed_total_2021 A_STATE 67498.05133 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102450">CalculateField counties_detailed_total_2021 A_STATE 24204.67691 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102509">CalculateField counties_detailed_total_2021 A_STATE 56048.47092 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102523">CalculateField counties_detailed_total_2021 A_STATE 97798.64281 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102538">CalculateField counties_detailed_total_2021 A_STATE 3439.62639 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102607">CalculateField counties_detailed_total_2021 FEMA_RGN_A 65481.65737 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102624">CalculateField counties_detailed_total_2021 FEMA_RGN_A 59643.49003 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102639">CalculateField counties_detailed_total_2021 FEMA_RGN_A 121377.3612 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102654">CalculateField counties_detailed_total_2021 FEMA_RGN_A 377157.0079 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102713">CalculateField counties_detailed_total_2021 FEMA_RGN_A 332478.4842 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102729">CalculateField counties_detailed_total_2021 FEMA_RGN_A 556683.572 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102749">CalculateField counties_detailed_total_2021 FEMA_RGN_A 285617.0496 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102809">CalculateField counties_detailed_total_2021 FEMA_RGN_A 581744.1509 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102828">CalculateField counties_detailed_total_2021 FEMA_RGN_A 389019.7688 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102845">CalculateField counties_detailed_total_2021 FEMA_RGN_A 830549.6025 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102911">CalculateField counties_detailed_total_2021 A_CONUS 3007441.977 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210527" Time="102923">CalculateField counties_detailed_total_2021 A_TOTAL 3599752.145 VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210805" Time="105112">CalculateField counties_detailed_total_2021 CountyName [COUNTY] VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210805" Time="105119">CalculateField counties_detailed_total_2021 CountyFIPS [FIPS] VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210805" Time="105149">CalculateField counties_detailed_total_2021 StateAbbr [STATE] VB #</Process>
+        <Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Data Management Tools.tbx\CalculateField" Date="20210817" Time="123740">CalculateField counties_detailed_total_2021 ShowCounty 0 VB #</Process>
+        <Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx\ExportFeatures" Date="20250908" Time="085045">ExportFeatures counties_detailed_total_2021 C:\Users\cpoulsen2\Documents\ArcGIS\Projects\MyProject\MyProject.gdb\counties_detailed_total_2021_ExportFeatures # NOT_USE_ALIAS "ISCONUS "ISCONUS" true true false 3 Text 0 0,First,#,counties_detailed_total_2021,ISCONUS,0,2;ISTOTAL "ISTOTAL" true true false 3 Text 0 0,First,#,counties_detailed_total_2021,ISTOTAL,0,2;StateFIPS "StateFIPS" true true false 2 Text 0 0,First,#,counties_detailed_total_2021,StateFIPS,0,1;WKID "WKID" true true false 4 Long 0 0,First,#,counties_detailed_total_2021,WKID,-1,-1;Shape_Length "Shape_Length" false true true 8 Double 0 0,First,#,counties_detailed_total_2021,Shape_Length,-1,-1;Shape_Area "Shape_Area" false true true 8 Double 0 0,First,#,counties_detailed_total_2021,Shape_Area,-1,-1;CountyName "CountyName" true true false 75 Text 0 0,First,#,counties_detailed_total_2021,CountyName,0,74;CountyFIPS "CountyFIPS" true true false 5 Text 0 0,First,#,counties_detailed_total_2021,CountyFIPS,0,4;StateAbbr "StateAbbr" true true false 2 Text 0 0,First,#,counties_detailed_total_2021,StateAbbr,0,1;ShowCounty "ShowCounty" true true false 2 Short 0 0,First,#,counties_detailed_total_2021,ShowCounty,-1,-1" #</Process>
       </lineage>
       <itemProps>
-        <itemName Sync="TRUE">counties_detailed_all</itemName>
+        <itemName Sync="TRUE">counties_detailed_total_2021_ExportFeatures</itemName>
         <imsContentType Sync="TRUE">002</imsContentType>
         <itemLocation>
-          <linkage Sync="TRUE">file://\\LAGSN-G1D8RN3\D$\Projects\USDM\CountiesUpdate\USDMcounties.gdb</linkage>
+          <linkage Sync="TRUE">file://\\LAGSN-G1D8RN3\C$\Users\cpoulsen2\Documents\ArcGIS\Projects\MyProject\MyProject.gdb</linkage>
           <protocol Sync="TRUE">Local Area Network</protocol>
         </itemLocation>
         <itemSize Sync="TRUE">0.000</itemSize>
       </itemProps>
       <coordRef>
-        <type Sync="TRUE">Geographic</type>
-        <geogcsn Sync="TRUE">GCS_WGS_1984</geogcsn>
-        <csUnits Sync="TRUE">Angular Unit: Degree (0.017453)</csUnits>
-        <peXml Sync="TRUE">&lt;GeographicCoordinateSystem xsi:type='typens:GeographicCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/10.7'&gt;&lt;WKT&gt;GEOGCS[&amp;quot;GCS_WGS_1984&amp;quot;,DATUM[&amp;quot;D_WGS_1984&amp;quot;,SPHEROID[&amp;quot;WGS_1984&amp;quot;,6378137.0,298.257223563]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433],AUTHORITY[&amp;quot;EPSG&amp;quot;,4326]]&lt;/WKT&gt;&lt;XOrigin&gt;-400&lt;/XOrigin&gt;&lt;YOrigin&gt;-400&lt;/YOrigin&gt;&lt;XYScale&gt;1111948722.2222221&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;8.983152841195215e-09&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;LeftLongitude&gt;-180&lt;/LeftLongitude&gt;&lt;WKID&gt;4326&lt;/WKID&gt;&lt;LatestWKID&gt;4326&lt;/LatestWKID&gt;&lt;/GeographicCoordinateSystem&gt;</peXml>
+        <type Sync="TRUE">Projected</type>
+        <geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn>
+        <csUnits Sync="TRUE">Linear Unit: Meter (1.000000)</csUnits>
+        <peXml Sync="TRUE">&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/3.5.0'&gt;&lt;WKT&gt;PROJCS[&amp;quot;USA_Contiguous_Albers_Equal_Area_Conic&amp;quot;,GEOGCS[&amp;quot;GCS_North_American_1983&amp;quot;,DATUM[&amp;quot;D_North_American_1983&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Albers&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,0.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,0.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,-96.0],PARAMETER[&amp;quot;Standard_Parallel_1&amp;quot;,29.5],PARAMETER[&amp;quot;Standard_Parallel_2&amp;quot;,45.5],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,37.5],UNIT[&amp;quot;Meter&amp;quot;,1.0],AUTHORITY[&amp;quot;Esri&amp;quot;,102003]]&lt;/WKT&gt;&lt;XOrigin&gt;-16901100&lt;/XOrigin&gt;&lt;YOrigin&gt;-8579000&lt;/YOrigin&gt;&lt;XYScale&gt;10000&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;0.001&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;102003&lt;/WKID&gt;&lt;LatestWKID&gt;102003&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml>
+        <projcsn Sync="TRUE">USA_Contiguous_Albers_Equal_Area_Conic</projcsn>
       </coordRef>
     </DataProperties>
-    <SyncDate>20200116</SyncDate>
-    <SyncTime>10372900</SyncTime>
-    <ModDate>20200116</ModDate>
-    <ModTime>10372900</ModTime>
+    <SyncDate>20250908</SyncDate>
+    <SyncTime>08504400</SyncTime>
+    <ModDate>20250908</ModDate>
+    <ModTime>08504400</ModTime>
   </Esri>
   <dataIdInfo>
-    <envirDesc Sync="TRUE"> Version 6.2 (Build 9200) ; Esri ArcGIS 10.7.1.11595</envirDesc>
+    <envirDesc Sync="TRUE">Microsoft Windows 10 Version 10.0 (Build 26100) ; Esri ArcGIS 13.5.3.57366</envirDesc>
     <dataLang>
       <languageCode value="eng" Sync="TRUE"/>
       <countryCode value="USA" Sync="TRUE"/>
     </dataLang>
     <idCitation>
-      <resTitle Sync="TRUE">counties_detailed_all</resTitle>
+      <resTitle Sync="TRUE">counties_detailed_total_2021_ExportFeatures</resTitle>
       <presForm>
         <PresFormCd value="005" Sync="TRUE"/>
       </presForm>
@@ -194,15 +265,15 @@
   <refSysInfo>
     <RefSystem>
       <refSysID>
-        <identCode code="4326" Sync="TRUE"/>
-        <idCodeSpace Sync="TRUE">EPSG</idCodeSpace>
-        <idVersion Sync="TRUE">6.14(3.0.1)</idVersion>
+        <identCode code="102003" Sync="TRUE"/>
+        <idCodeSpace Sync="TRUE">Esri</idCodeSpace>
+        <idVersion Sync="TRUE">4.0.0</idVersion>
       </refSysID>
     </RefSystem>
   </refSysInfo>
   <spatRepInfo>
     <VectSpatRep>
-      <geometObjs Name="counties_detailed_all">
+      <geometObjs Name="counties_detailed_total_2021_ExportFeatures">
         <geoObjTyp>
           <GeoObjTypCd value="002" Sync="TRUE"/>
         </geoObjTyp>
@@ -215,7 +286,7 @@
   </spatRepInfo>
   <spdoinfo>
     <ptvctinf>
-      <esriterm Name="counties_detailed_all">
+      <esriterm Name="counties_detailed_total_2021_ExportFeatures">
         <efeatyp Sync="TRUE">Simple</efeatyp>
         <efeageom code="4" Sync="TRUE"/>
         <esritopo Sync="TRUE">FALSE</esritopo>
@@ -226,9 +297,9 @@
     </ptvctinf>
   </spdoinfo>
   <eainfo>
-    <detailed Name="counties_detailed_all">
+    <detailed Name="counties_detailed_total_2021_ExportFeatures">
       <enttyp>
-        <enttypl Sync="TRUE">counties_detailed_all</enttypl>
+        <enttypl Sync="TRUE">counties_detailed_total_2021_ExportFeatures</enttypl>
         <enttypt Sync="TRUE">Feature Class</enttypt>
         <enttypc Sync="TRUE">0</enttypc>
       </enttyp>
@@ -259,102 +330,6 @@
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl Sync="TRUE">FIPS</attrlabl>
-        <attalias Sync="TRUE">FIPS</attalias>
-        <attrtype Sync="TRUE">String</attrtype>
-        <attwidth Sync="TRUE">5</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">COUNTY</attrlabl>
-        <attalias Sync="TRUE">COUNTY</attalias>
-        <attrtype Sync="TRUE">String</attrtype>
-        <attwidth Sync="TRUE">75</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">STATE</attrlabl>
-        <attalias Sync="TRUE">STATE</attalias>
-        <attrtype Sync="TRUE">String</attrtype>
-        <attwidth Sync="TRUE">2</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">P_C2010</attrlabl>
-        <attalias Sync="TRUE">P_C2010</attalias>
-        <attrtype Sync="TRUE">Integer</attrtype>
-        <attwidth Sync="TRUE">4</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">PD_C2010</attrlabl>
-        <attalias Sync="TRUE">PD_C2010</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">A_CNTY_</attrlabl>
-        <attalias Sync="TRUE">A_CNTY_</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">P_ST_2010</attrlabl>
-        <attalias Sync="TRUE">P_ST_2010</attalias>
-        <attrtype Sync="TRUE">Integer</attrtype>
-        <attwidth Sync="TRUE">4</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">P_CUS_2010</attrlabl>
-        <attalias Sync="TRUE">P_CUS_2010</attalias>
-        <attrtype Sync="TRUE">Integer</attrtype>
-        <attwidth Sync="TRUE">4</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">P_TUS_2010</attrlabl>
-        <attalias Sync="TRUE">P_TUS_2010</attalias>
-        <attrtype Sync="TRUE">Integer</attrtype>
-        <attwidth Sync="TRUE">4</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">A_STATE</attrlabl>
-        <attalias Sync="TRUE">A_STATE</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">A_CONUS</attrlabl>
-        <attalias Sync="TRUE">A_CONUS</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">A_TOTAL</attrlabl>
-        <attalias Sync="TRUE">A_TOTAL</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
         <attrlabl Sync="TRUE">ISCONUS</attrlabl>
         <attalias Sync="TRUE">ISCONUS</attalias>
         <attrtype Sync="TRUE">String</attrtype>
@@ -371,30 +346,6 @@
         <attscale Sync="TRUE">0</attscale>
       </attr>
       <attr>
-        <attrlabl Sync="TRUE">FEMA_RGN</attrlabl>
-        <attalias Sync="TRUE">FEMA_RGN</attalias>
-        <attrtype Sync="TRUE">Integer</attrtype>
-        <attwidth Sync="TRUE">4</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">FEMA_RGN_A</attrlabl>
-        <attalias Sync="TRUE">FEMA_RGN_A</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">FEMA_RGN_P</attrlabl>
-        <attalias Sync="TRUE">FEMA_RGN_P</attalias>
-        <attrtype Sync="TRUE">Integer</attrtype>
-        <attwidth Sync="TRUE">4</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
         <attrlabl Sync="TRUE">StateFIPS</attrlabl>
         <attalias Sync="TRUE">StateFIPS</attalias>
         <attrtype Sync="TRUE">String</attrtype>
@@ -403,42 +354,42 @@
         <attscale Sync="TRUE">0</attscale>
       </attr>
       <attr>
-        <attrlabl Sync="TRUE">HASC</attrlabl>
-        <attalias Sync="TRUE">HASC</attalias>
-        <attrtype Sync="TRUE">String</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">RCC</attrlabl>
-        <attalias Sync="TRUE">RCC</attalias>
-        <attrtype Sync="TRUE">String</attrtype>
-        <attwidth Sync="TRUE">20</attwidth>
-        <atprecis Sync="TRUE">0</atprecis>
-        <attscale Sync="TRUE">0</attscale>
-      </attr>
-      <attr>
-        <attrlabl Sync="TRUE">P_AUS_2010</attrlabl>
-        <attalias Sync="TRUE">P_AUS_2010</attalias>
+        <attrlabl Sync="TRUE">WKID</attrlabl>
+        <attalias Sync="TRUE">WKID</attalias>
         <attrtype Sync="TRUE">Integer</attrtype>
         <attwidth Sync="TRUE">4</attwidth>
         <atprecis Sync="TRUE">0</atprecis>
         <attscale Sync="TRUE">0</attscale>
       </attr>
       <attr>
-        <attrlabl Sync="TRUE">Lat</attrlabl>
-        <attalias Sync="TRUE">Lat</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
+        <attrlabl Sync="TRUE">CountyName</attrlabl>
+        <attalias Sync="TRUE">CountyName</attalias>
+        <attrtype Sync="TRUE">String</attrtype>
+        <attwidth Sync="TRUE">75</attwidth>
         <atprecis Sync="TRUE">0</atprecis>
         <attscale Sync="TRUE">0</attscale>
       </attr>
       <attr>
-        <attrlabl Sync="TRUE">Lon</attrlabl>
-        <attalias Sync="TRUE">Lon</attalias>
-        <attrtype Sync="TRUE">Double</attrtype>
-        <attwidth Sync="TRUE">8</attwidth>
+        <attrlabl Sync="TRUE">CountyFIPS</attrlabl>
+        <attalias Sync="TRUE">CountyFIPS</attalias>
+        <attrtype Sync="TRUE">String</attrtype>
+        <attwidth Sync="TRUE">5</attwidth>
+        <atprecis Sync="TRUE">0</atprecis>
+        <attscale Sync="TRUE">0</attscale>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">StateAbbr</attrlabl>
+        <attalias Sync="TRUE">StateAbbr</attalias>
+        <attrtype Sync="TRUE">String</attrtype>
+        <attwidth Sync="TRUE">2</attwidth>
+        <atprecis Sync="TRUE">0</atprecis>
+        <attscale Sync="TRUE">0</attscale>
+      </attr>
+      <attr>
+        <attrlabl Sync="TRUE">ShowCounty</attrlabl>
+        <attalias Sync="TRUE">ShowCounty</attalias>
+        <attrtype Sync="TRUE">SmallInteger</attrtype>
+        <attwidth Sync="TRUE">2</attwidth>
         <atprecis Sync="TRUE">0</atprecis>
         <attscale Sync="TRUE">0</attscale>
       </attr>
@@ -470,7 +421,7 @@
       </attr>
     </detailed>
   </eainfo>
-  <mdDateSt Sync="TRUE">20200116</mdDateSt>
+  <mdDateSt Sync="TRUE">20250908</mdDateSt>
   <mdChar>
     <CharSetCd value="004" Sync="TRUE"/>
   </mdChar>
