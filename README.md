@@ -190,18 +190,18 @@ processing scripts, as well as geographic statistics (length and area).
 These columns are not well documented, but can be inferred from the
 data.
 
-| Variable Name  | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| `ISCONUS`      | Whether the county is part of the Continental United States                      |
-| `ISTOTAL`      | Whether the county is an outlying territory of the US                            |
-| `StateFIPS`    | A two-digit FIPS state code                                                      |
-| `WKID`         | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
-| `CountyName`   | The county name                                                                  |
-| `CountyFIPS`   | A five-digit FIPS state and county code                                          |
-| `StateAbbr`    | The state abbreviation                                                           |
-| `ShowCounty`   | A boolean field presumably related to internal USDM mapping                      |
-| `Shape_Length` | The boundary length of the county, in meters                                     |
-| `Shape_Area`   | The area of the county, in square meters                                         |
+| Variable Name | Description |
+|----|----|
+| `ISCONUS` | Whether the county is part of the Continental United States |
+| `ISTOTAL` | Whether the county is an outlying territory of the US |
+| `StateFIPS` | A two-digit FIPS state code |
+| `WKID` | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
+| `CountyName` | The county name |
+| `CountyFIPS` | A five-digit FIPS state and county code |
+| `StateAbbr` | The state abbreviation |
+| `ShowCounty` | A boolean field presumably related to internal USDM mapping |
+| `Shape_Length` | The boundary length of the county, in meters |
+| `Shape_Area` | The area of the county, in square meters |
 
 ------------------------------------------------------------------------
 
