@@ -1,26 +1,26 @@
 # update.packages(repos = "https://cran.rstudio.com/",
 #                 ask = FALSE)
-
-install.packages("pak",
-                 repos = "https://cran.rstudio.com/")
-
-# installed.packages() |>
-#   rownames() |>
-#   pak::pkg_install(upgrade = TRUE,
-#                  ask = FALSE)
-
-pak::pak(
-  c(
-    "arrow?source",
-    "sf?source",
-    "curl",
-    "tidyverse",
-    "archive",
-    "digest",
-    "rmapshaper", # For README example
-    "tigris" # For README example
-  )
-)
+# 
+# install.packages("pak",
+#                  repos = "https://cran.rstudio.com/")
+# 
+# # installed.packages() |>
+# #   rownames() |>
+# #   pak::pkg_install(upgrade = TRUE,
+# #                  ask = FALSE)
+# 
+# pak::pak(
+#   c(
+#     "arrow?source",
+#     "sf?source",
+#     "curl",
+#     "tidyverse",
+#     "archive",
+#     "digest",
+#     "rmapshaper", # For README example
+#     "tigris" # For README example
+#   )
+# )
 
 library(magrittr)
 library(tidyverse)
