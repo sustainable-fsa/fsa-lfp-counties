@@ -61,6 +61,7 @@ fsa_lfp_counties <-
     layer_options = c("COMPRESSION=ZSTD",
                       "GEOMETRY_ENCODING=GEOARROW",
                       "WRITE_COVERING_BBOX=NO"),
+    delete_dsn = TRUE
   )
 
 sf::gdal_utils(util = "vectortranslate",
