@@ -34,4 +34,5 @@ jobs:
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git commit --allow-empty -m 'Update Archive'
+          git pull --rebase
           git push
