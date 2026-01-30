@@ -11,13 +11,12 @@ eligibility.
 Each week, eligibility for the LFP is determined for each county in the
 United States. Federal law and FSA guidance describes a process by which
 [county-level
-eligibility](https://sustainable-fsa.github.io/fsa-lfp-eligibility/) is
+eligibility](https://sustainable-fsa.com/fsa-lfp-eligibility/) is
 determined by the intersection of county boundaries, the [United States
 Drought Monitor weekly drought
-assessment](https://sustainable-fsa.github.io/usdm/), and the [normal
-grazing
-period](https://sustainable-fsa.github.io/fsa-normal-grazing-period/)
-for each type of grazing land in each county.
+assessment](https://sustainable-fsa.com/usdm/), and the [normal grazing
+period](https://sustainable-fsa.com/fsa-normal-grazing-period/) for each
+type of grazing land in each county.
 
 [Official county boundaries
 change](https://www.census.gov/programs-surveys/geography/technical-documentation/county-changes.html),
@@ -171,7 +170,7 @@ processing script [`fsa-lfp-counties.R`](./%60fsa-lfp-counties.R):
 2.  **Reads** the Esri file geodatabase into a spatial object in R using
     the `sf` package.
 3.  **Writes** the spatial counties data to `fsa-lfp-counties.parquet`
-    in Brotli-compressed Apache Parquet format.
+    in Apache Parquet format.
 4.  **Extracts** Esri metadata from the file geodatabase, and writes it
     in XML format as `fsa-lfp-counties.xml`.
 5.  **Copies and renames** the USDM processing scripts to the base
@@ -190,18 +189,18 @@ processing scripts, as well as geographic statistics (length and area).
 These columns are not well documented, but can be inferred from the
 data.
 
-| Variable Name  | Description                                                                      |
-|----------------|----------------------------------------------------------------------------------|
-| `ISCONUS`      | Whether the county is part of the Continental United States                      |
-| `ISTOTAL`      | Whether the county is an outlying territory of the US                            |
-| `StateFIPS`    | A two-digit FIPS state code                                                      |
-| `WKID`         | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
-| `CountyName`   | The county name                                                                  |
-| `CountyFIPS`   | A five-digit FIPS state and county code                                          |
-| `StateAbbr`    | The state abbreviation                                                           |
-| `ShowCounty`   | A boolean field presumably related to internal USDM mapping                      |
-| `Shape_Length` | The boundary length of the county, in meters                                     |
-| `Shape_Area`   | The area of the county, in square meters                                         |
+| Variable Name | Description |
+|----|----|
+| `ISCONUS` | Whether the county is part of the Continental United States |
+| `ISTOTAL` | Whether the county is an outlying territory of the US |
+| `StateFIPS` | A two-digit FIPS state code |
+| `WKID` | The Well-Known ID for a spatial reference system (SRS) — presumably the original |
+| `CountyName` | The county name |
+| `CountyFIPS` | A five-digit FIPS state and county code |
+| `StateAbbr` | The state abbreviation |
+| `ShowCounty` | A boolean field presumably related to internal USDM mapping |
+| `Shape_Length` | The boundary length of the county, in meters |
+| `Shape_Area` | The area of the county, in square meters |
 
 ------------------------------------------------------------------------
 
@@ -219,7 +218,7 @@ library(rmapshaper) # For innerlines function
 ## Load the fsa-lfp-counties parquet file
 counties <- 
   # You can read straight from online
-  # sf::read_sf("https://sustainable-fsa.github.io/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
+  # sf::read_sf("https://sustainable-fsa.com/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
   sf::read_sf("fsa-lfp-counties.parquet") %>%
   # transform to WGS 84
   sf::st_transform("EPSG:4326") %>%
@@ -251,7 +250,7 @@ ggplot(counties) +
   theme_void()
 ```
 
-<img src="./example-1.png" style="display: block; margin: auto;" />
+<img src="./example-1.png" alt="" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -262,7 +261,7 @@ If using this data in published work, please cite:
 > USDA Farm Service Agency. *Livestock Forage Disaster Program County
 > Boundaries*. FOIA request 2025-FSA-08431-F by R. Kyle Bocinsky.
 > Accessed via GitHub archive, YYYY.
-> <https://sustainable-fsa.github.io/fsa-lfp-counties/>
+> <https://sustainable-fsa.com/fsa-lfp-counties/>
 
 ------------------------------------------------------------------------
 
