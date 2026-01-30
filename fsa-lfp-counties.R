@@ -58,7 +58,7 @@ fsa_lfp_counties <-
   sf::write_sf(
     "fsa-lfp-counties.parquet",
     driver = "Parquet",
-    layer_options = c("COMPRESSION=BROTLI",
+    layer_options = c("COMPRESSION=ZSTD",
                       "GEOMETRY_ENCODING=GEOARROW",
                       "WRITE_COVERING_BBOX=NO"),
   )
@@ -103,7 +103,7 @@ file.rename(from = c("usdm_data.py",
 
 # # Also identical to the NDMC Albers.gdb dataset
 # sf::read_sf(
-#   "/vsizip//vsicurl/https://sustainable-fsa.github.io/ndmc-counties-albers/Albers.gdb.zip/Albers.gdb",
+#   "/vsizip//vsicurl/https://sustainable-fsa.com/ndmc-counties-albers/Albers.gdb.zip/Albers.gdb",
 #   layer = "counties_detailed_total_2021") %>%
 #   dplyr::select(
 #     names(fsa_lfp_counties_file %>%
