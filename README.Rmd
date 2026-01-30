@@ -64,7 +64,7 @@ The 2025-09-04 FOIA response contains two zipped archives: one containing an Esr
 
 1. **Unzips** the zipped archive.
 3. **Reads** the Esri file geodatabase into a spatial object in R using the `sf` package.
-4. **Writes** the spatial counties data to `fsa-lfp-counties.parquet` in Brotli-compressed Apache Parquet format.
+4. **Writes** the spatial counties data to `fsa-lfp-counties.parquet` in Apache Parquet format.
 5. **Extracts** Esri metadata from the file geodatabase, and writes it in XML format as `fsa-lfp-counties.xml`.
 6. **Copies and renames** the USDM processing scripts to the base directory.
 6. **Renders** this document into `README.md`.
