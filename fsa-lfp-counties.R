@@ -59,8 +59,7 @@ fsa_lfp_counties <-
     "fsa-lfp-counties.parquet",
     driver = "Parquet",
     layer_options = c("COMPRESSION=ZSTD",
-                      "GEOMETRY_ENCODING=GEOARROW",
-                      "WRITE_COVERING_BBOX=NO"),
+                      "COMPRESSION_LEVEL=13"),
     delete_dsn = TRUE
   )
 
