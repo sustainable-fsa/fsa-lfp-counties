@@ -100,7 +100,7 @@ library(rmapshaper) # For innerlines function
 ## Load the fsa-lfp-counties parquet file
 counties <- 
   # You can read straight from online
-  # sf::read_sf("https://sustainable-fsa.com/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
+  # sf::read_sf("https://data.sustainable-fsa.com/fsa-lfp-counties/fsa-lfp-counties.parquet") %>%
   sf::read_sf("fsa-lfp-counties.parquet") %>%
   # transform to WGS 84
   sf::st_transform("EPSG:4326") %>%
