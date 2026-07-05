@@ -8,7 +8,9 @@ on:
 name: update
 run-name: Update the FSA LFP Counties archive
 
-permissions: write-all
+permissions:
+  contents: write
+  id-token: write
 
 defaults:
   run:
@@ -23,6 +25,12 @@ jobs:
     steps:
 
       - uses: mt-climate-office/actions/setup-geospatial@v1
+
+      - name: Configure AWS credentials (GitHub OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::202533506375:role/sustainable-fsa-github-actions
+          aws-region: us-west-2
 
       - name: run
         run: |
