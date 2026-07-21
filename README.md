@@ -23,7 +23,7 @@ change](https://www.census.gov/programs-surveys/geography/technical-documentatio
 both substantially as counties and county equivalents are created and
 removed as well as in small ways as legal boundaries between counties
 are refined. For instance, the US Census has recorded 472 county
-boundary corrections or changes from 2008 through 2024. Thus, agencies
+boundary corrections or changes from 2008 through 2025. Thus, agencies
 that make regulatory actions which implicate county boundaries (such as
 LFP eligibility determination) *must* maintain records of which
 boundaries were used for such determinations. LFP eligibility
