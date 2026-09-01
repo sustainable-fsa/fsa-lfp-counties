@@ -18,7 +18,7 @@
 #     "archive",
 #     "digest",
 #     "rmapshaper", # For README example
-#     "tigris" # For README example
+#     "tigris" # For TopoJSON state names and README example
 #   )
 # )
 
@@ -107,6 +107,55 @@ file.rename(from = c("usdm_data.py",
             ))
 
 
+## Create a full-detail TopoJSON version, following the pattern of
+## fsa-counties-dd17 and fsa-counties-dd22. Unlike those datasets, this
+## version is neither simplified nor clipped to the coastline, and Alaska,
+## Hawaii, and Puerto Rico stay in true position: the USDM drought statistics
+## that drive LFP eligibility are tabulated against these exact polygons, so
+## the TopoJSON preserves them at full resolution — only reprojected to WGS 84
+## and quantized to a ~60 cm grid.
+
+## State names are not in the FOIA release — join them from the Census,
+## pinned to a vintage so nothing here floats with a tigris release.
+state_names <-
+  tigris::states(cb = TRUE,
+                 year = 2024,
+                 progress_bar = FALSE) %>%
+  sf::st_drop_geometry() %>%
+  dplyr::select(StateFIPS = STATEFP,
+                state = NAME)
+
+fsa_lfp_counties %>%
+  dplyr::left_join(state_names) %>%
+  dplyr::select(id = CountyFIPS,
+                state,
+                county = CountyName) %>%
+  sf::st_transform("WGS84") %>%
+  sf::write_sf("fsa-lfp-counties.geojson",
+               delete_dsn = TRUE)
+
+## gap-fill-area=0: these counties are not edge-matched — unioning them leaves
+## 491 pinhole gaps where neighbors fail to meet. They are part of the record,
+## so unlike dd17/dd22 the -clean passes must not fill them.
+system(
+  "
+mapshaper \\
+  fsa-lfp-counties.geojson \\
+  -clean rewind gap-fill-area=0 \\
+  -rename-layers counties \\
+  -dissolve field=state copy-fields='id' + name=states \\
+  -each 'id=id.slice(0,2)' target=states \\
+  -clean gap-fill-area=0 target=counties,states \\
+  -rename-layers counties,states target=counties,states \\
+  -o format=topojson quantization=1e7 fix-geometry id-field='id' bbox target=* fsa-lfp-counties.topojson
+"
+)
+
+unlink("fsa-lfp-counties.geojson")
+
+# sf::read_sf("fsa-lfp-counties.topojson", layer = "counties") %>%
+#   mapview::mapview()
+
 # # Also identical to the NDMC Albers.gdb dataset
 # sf::read_sf(
 #   "/vsizip//vsicurl/https://sustainable-fsa.com/ndmc-counties-albers/Albers.gdb.zip/Albers.gdb",
@@ -140,6 +189,14 @@ s3_put(bucket = s3_bucket,
        cache_control = "max-age=3600")
 
 s3_put(bucket = s3_bucket,
+       key = paste0(s3_prefix, "/fsa-lfp-counties.topojson"),
+       file = "fsa-lfp-counties.topojson",
+       ## TopoJSON is JSON. Without this, s3_put() falls back to
+       ## application/octet-stream, which CloudFront will not compress.
+       content_type = "application/json",
+       cache_control = "max-age=3600")
+
+s3_put(bucket = s3_bucket,
        key = paste0(s3_prefix, "/fsa-lfp-counties.xml"),
        file = "fsa-lfp-counties.xml",
        content_type = "application/xml",
@@ -156,6 +213,7 @@ s3_write_manifest(bucket = s3_bucket,
 cf_invalidate(
   paths = c(
     paste0("/", s3_prefix, "/fsa-lfp-counties.parquet"),
+    paste0("/", s3_prefix, "/fsa-lfp-counties.topojson"),
     paste0("/", s3_prefix, "/_manifest.txt")
   )
 )

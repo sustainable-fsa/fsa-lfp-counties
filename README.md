@@ -143,10 +143,12 @@ A few considerations should be noted:
 
 - [`foia/2025-FSA-08431-F Bocinsky.zip`](./foia/2025-FSA-08431-F%20Bocinsky.zip)
   — original FOIA data and correspondence
-- [`fsa-lfp-counties.R`](./fsa-normal-grazing-period.R) — archive
-  processing script
+- [`fsa-lfp-counties.R`](./fsa-lfp-counties.R) — archive processing
+  script
 - [`fsa-lfp-counties.parquet`](./fsa-lfp-counties.parquet) — FSA LFP
   county data in GeoParquet format
+- [`fsa-lfp-counties.topojson`](./fsa-lfp-counties.topojson) —
+  full-detail TopoJSON version of the county boundaries (see below)
 - [`fsa-lfp-counties.xml`](./fsa-lfp-counties.xml) — ArcGIS metadata for
   the FSA LFP county data
 - [`fsa-lfp-counties-usdm_data.py`](./fsa-lfp-counties-usdm_data.py) —
@@ -175,7 +177,9 @@ processing script [`fsa-lfp-counties.R`](./%60fsa-lfp-counties.R):
     in XML format as `fsa-lfp-counties.xml`.
 5.  **Copies and renames** the USDM processing scripts to the base
     directory.
-6.  **Renders** this document into `README.md`.
+6.  **Creates** a full-detail TopoJSON version of the counties data as
+    `fsa-lfp-counties.topojson` (see below).
+7.  **Renders** this document into `README.md`.
 
 ### Data Description
 
@@ -201,6 +205,63 @@ data.
 | `ShowCounty` | A boolean field presumably related to internal USDM mapping |
 | `Shape_Length` | The boundary length of the county, in meters |
 | `Shape_Area` | The area of the county, in square meters |
+
+------------------------------------------------------------------------
+
+## 🗺️ TopoJSON Version
+
+A full-detail TopoJSON version of the FSA LFP counties dataset is
+included in this repository as
+[`fsa-lfp-counties.topojson`](./fsa-lfp-counties.topojson), for web
+mapping and other work that wants a single compact file rather than
+GeoParquet. It is also mirrored to S3 at
+<https://data.sustainable-fsa.com/fsa-lfp-counties/fsa-lfp-counties.topojson>.
+
+The sibling
+[`fsa-counties-dd17`](https://github.com/sustainable-fsa/fsa-counties-dd17)
+and
+[`fsa-counties-dd22`](https://github.com/sustainable-fsa/fsa-counties-dd22)
+archives publish *simplified* TopoJSONs with pre-inset
+Alaska/Hawaii/Puerto Rico. This one deliberately does not: the USDM
+drought statistics that drive LFP eligibility determinations are
+tabulated against these exact polygons, so the TopoJSON preserves the
+boundaries at full resolution, with Alaska, Hawaii, and Puerto Rico in
+true position, and with no coastline clip. (A simplified, inset, tiled
+rendition for interactive maps is published separately by
+[`data-tiles`](https://github.com/sustainable-fsa/data-tiles).)
+
+The TopoJSON contains two layers:
+
+| Layer | Description |
+|----|----|
+| `counties` | The 3,221 county boundaries, with `id` (five-digit FIPS state and county code), `state` (state name), and `county` (county name, as delivered) fields |
+| `states` | State boundaries dissolved from the counties, with `id` (two-digit FIPS state code) and `state` (state name) fields |
+
+### 🔧 Processing Steps
+
+The processing script [`fsa-lfp-counties.R`](./fsa-lfp-counties.R):
+
+1.  **Joins** state names — the FOIA release carries only state
+    abbreviations, so names come from the 2024 US Census cartographic
+    boundary states file — and the county names as delivered.
+2.  **Transforms** the counties to WGS 84
+    ([EPSG:4326](https://spatialreference.org/ref/epsg/4326/)).
+3.  **Exports** to TopoJSON with `mapshaper`, dissolving the `states`
+    layer from the counties and quantizing coordinates
+    (`quantization=1e7`, a snap grid of roughly 60 cm — finer than any
+    real accuracy in the boundaries).
+
+### ⚠️ Differences from the source data
+
+The TopoJSON is a faithful rendition, not a byte-faithful one:
+coordinates are reprojected from the delivered Albers coordinate
+reference system to WGS 84 and snapped to the ~60 cm quantization grid,
+and mapshaper repairs the handful of hairline self-intersections that
+snapping introduces. Quirks of the source data are otherwise preserved —
+in particular, the counties are not edge-matched, and the hairline gaps
+where neighboring counties fail to meet are deliberately *not* filled.
+[`fsa-lfp-counties.parquet`](./fsa-lfp-counties.parquet) remains the
+authoritative copy of the data as delivered.
 
 ------------------------------------------------------------------------
 
